@@ -8,17 +8,18 @@ struct Node; //remover warnings
     struct Node *next;
 };
 
-struct Node *create_node(int data)
+struct Node *create_node(int data) //retorna um ponteiro para a struct Node
 {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node)); //aloca memória para o novo tamanho da struct
     if(newNode == NULL)
     {
         printf("Erro ao alocar no.\n");
         exit(1);
     }
+    printf("New Node addr: %p\n\n", newNode);
     newNode->content = data;
     newNode->next = NULL;
-    return newNode;
+    return newNode; //retorna um novo endereço da estrutura
 }
 
 void printNodes(struct Node* head)
@@ -27,6 +28,7 @@ void printNodes(struct Node* head)
 
     while(current != NULL)
     {
+        printf("current addr: %p\n\n", current);
         printf("%d\t", current->content);
         current = current->next;
     }
@@ -54,7 +56,11 @@ int main(int argc, char const *argv[])
     head->next = second;
     second->next = third;
 
-    printf("Lista encadeada original: \n");
+    printf("%p\n\n", head);
+    printf("%p\n\n", second);
+    printf("%p\n\n", third);
+
+    printf("Lista encadeada original: \n\n");
     printNodes(head);
 
     freeList(head);

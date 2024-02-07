@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define RELEASE
 
 struct Node; //remover warnings
 
@@ -16,7 +17,9 @@ struct Node *create_node(int data) //retorna um ponteiro para a struct Node
         printf("Erro ao alocar no.\n");
         exit(1);
     }
+    #ifdef DEBUG
     printf("New Node addr: %p\n\n", newNode);
+    #endif
     newNode->content = data;
     newNode->next = NULL;
     return newNode; //retorna um novo endereço da estrutura
@@ -28,7 +31,9 @@ void printNodes(struct Node* head)
 
     while(current != NULL)
     {
+        #ifdef DEBUG
         printf("current addr: %p\n\n", current);
+        #endif
         printf("%d\t", current->content);
         current = current->next;
     }
@@ -56,9 +61,11 @@ int main(int argc, char const *argv[])
     head->next = second;
     second->next = third;
 
+    #ifdef DEBUG
     printf("%p\n\n", head);
     printf("%p\n\n", second);
     printf("%p\n\n", third);
+    #endif
 
     printf("Lista encadeada original: \n\n");
     printNodes(head);
@@ -67,3 +74,4 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+
